@@ -4,24 +4,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="UTF-8">
     <title>交房费用统计</title>
-    <style type="text/css">
-        table td{
-            width: 150px;
-        }
-    </style>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 </head>
 <body>
-    平米数(平米): <input id="house_size" onkeyup="limitInput(this)"/>
-    <p>总房款(万元): <input id="house_total" onkeyup="limitInput(this)"/></p>
-    <button onclick="calcHouse()">计算</button>
-    <br>
-    <br>
-    <table border="1px" cellspacing="0">
+	<div style="padding: 0.5rem;float: left; width:80%;">
+		<b>房屋面积(平米): </b>
+	    <input class="input is-small" id="house_size" onkeyup="limitInput(this)" style="width: 45%"/>
+	    <br>
+	    <b>房屋全款(万元): </b>
+	    <input class="input is-small" id="house_total" onkeyup="limitInput(this)" style="width: 45%"/>
+	    <br>
+    </div>
+    <button class="button is-primary" onclick="calcHouse()" style="margin-top:0.5rem;height:54px;">计算</button>
+    
+    <table class="table is-bordered is-narrow">
         <tr>
             <td>名称</td>
             <td>时间</td>
             <td>单价(元)</td>
-            <td>费用(元)</td>
+            <td style="width:25%;">费用(元)</td>
         </tr>
         <tr>
             <td>物业管理费</td>
@@ -32,7 +33,7 @@
         <tr>
             <td>地下车位费</td>
             <td>一年</td>
-            <td><input id="house_car" value="0" style="width: 20px">辆 x 30/月</td>
+            <td><input class="input is-small" id="house_car" value="0" style="width: 2.5rem;"> x <br>30/位/月</td>
             <td id="house_cw"></td>
         </tr>
         <tr>
@@ -56,7 +57,7 @@
         <tr>
             <td>契税</td>
             <td>一次性</td>
-            <td>小于90平: 1% <br> 大于90平: 1.5%</td>
+            <td>小于90平: 1% <br>大于90平: 1.5%</td>
             <td id="house_qs"></td>
         </tr>
         <tr>
@@ -75,11 +76,11 @@
             <td>房屋面积误差</td>
             <td>一次性</td>
             <td>
-            	<select id="house_wc_symbol" style="width:50px">
+            	<select class="select is-small" id="house_wc_symbol" style="width:2.5rem;">
             		<option value="1">多</option>
             		<option value="-1">少</option>
             	</select>
-            	<input value="0" id="house_wc_size" style="width:20px">%
+            	<input class="input is-small" value="0" id="house_wc_size" style="width:1.5rem;">%
             </td>
             <td id="house_fk"></td>
         </tr>
