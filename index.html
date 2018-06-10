@@ -7,6 +7,9 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
 </head>
 <body>
+	<div class="container">
+	
+	
 	<div style="padding: 0.5rem;float: left; width:80%;">
 		<b>房屋面积(平米): </b>
 	    <input class="input is-small" id="house_size" onkeyup="limitInput(this)" style="width: 45%"/>
@@ -17,7 +20,7 @@
     </div>
     <button class="button is-primary" onclick="calcHouse()" style="margin-top:0.5rem;height:54px;">计算</button>
     
-    <table class="table is-bordered is-narrow">
+    <table class="table is-bordered is-narrow is-fullwidth" style="float: left">
         <tr>
             <td>名称</td>
             <td>时间</td>
@@ -33,7 +36,7 @@
         <tr>
             <td>地下车位费</td>
             <td>一年</td>
-            <td><input class="input is-small" id="house_car" value="0" style="width: 2.5rem;"> x <br>30/位/月</td>
+            <td><input class="input is-small" id="house_car" value="0" style="width: 3rem;"> x 30/位/月</td>
             <td id="house_cw"></td>
         </tr>
         <tr>
@@ -76,11 +79,13 @@
             <td>房屋面积误差</td>
             <td>一次性</td>
             <td>
-            	<select class="select is-small" id="house_wc_symbol" style="width:2.5rem;">
+            	<div class="select is-small">
+            	<select class="" id="house_wc_symbol" style="width:4rem;">
             		<option value="1">多</option>
             		<option value="-1">少</option>
             	</select>
-            	<input class="input is-small" value="0" id="house_wc_size" style="width:1.5rem;">%
+            	</div>
+            	<input class="input is-small" value="0" id="house_wc_size" style="width:3rem;">%
             </td>
             <td id="house_fk"></td>
         </tr>
@@ -90,8 +95,9 @@
             <td></td>
             <td id="house_all"></td>
         </tr>
-
     </table>
+    
+    </div>
 
     <script type="text/javascript">
         var house_all = 0;
