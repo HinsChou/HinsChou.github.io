@@ -1,8 +1,136 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>交房费用统计</title>
+    <style type="text/css">
+        table td{
+            width: 150px;
+        }
+    </style>
+</head>
 <body>
+    平米数(平米): <input id="house_size"/>
+    总房款(万元): <input id="house_total"/>
+    <button onclick="calcHouse()">计算</button>
+    <br>
+    <br>
+    <table border="1px">
+        <tr>
+            <td>名称</td>
+            <td>时间</td>
+            <td>单价(元)</td>
+            <td>费用(元)</td>
+        </tr>
+        <tr>
+            <td>物业管理费</td>
+            <td>一年</td>
+            <td>2/平米/月</td>
+            <td id="house_wy"></td>
+        </tr>
+        <tr>
+            <td>地下车位费</td>
+            <td>一年</td>
+            <td>30/月</td>
+            <td id="house_cw"></td>
+        </tr>
+        <tr>
+            <td>垃圾清理费</td>
+            <td>一次性</td>
+            <td>5/平米</td>
+            <td id="house_lj"></td>
+        </tr>
+        <tr>
+            <td>装修保证金</td>
+            <td>半年后退还</td>
+            <td>2000/户</td>
+            <td id="house_zx"></td>
+        </tr>
+        <tr>
+            <td>维修基金</td>
+            <td>一次性</td>
+            <td>75/平米</td>
+            <td id="house_wx"></td>
+        </tr>
+        <tr>
+            <td>契税</td>
+            <td>一次性</td>
+            <td>小于90平: 1% <br> 大于90平: 1.5%</td>
+            <td id="house_qs"></td>
+        </tr>
+        <tr>
+            <td>不动产权登记费</td>
+            <td>一次性</td>
+            <td>80/户</td>
+            <td id="house_dj"></td>
+        </tr>
+        <tr>
+            <td>抵押权证费</td>
+            <td>一次性</td>
+            <td>80/户</td>
+            <td id="house_dy"></td>
+        </tr>
+        <tr>
+            <td>房款</td>
+            <td>一次性</td>
+            <td>3% x 总房款</td>
+            <td id="house_fk"></td>
+        </tr>
+        <tr>
+            <td>总计</td>
+            <td>一次性</td>
+            <td></td>
+            <td id="house_all"></td>
+        </tr>
 
-<h1>Hello, World!</h1>
+    </table>
 
+    <script type="text/javascript">
+        var house_all = 0;
+
+        function getValue(id) {
+            return document.getElementById(id).value;
+        }
+
+        function setValue(id, value) {
+            document.getElementById(id).innerHTML = value;
+            house_all += value;
+        }
+
+        function calcHouse(){
+            var size = getValue("house_size");
+            var total = getValue("house_total") * 10000;
+
+            var house_wy = 2 * 12 * size;
+            setValue("house_wy", house_wy);
+
+            var house_cw = 12 * 30;
+            setValue("house_cw", house_cw);
+
+            var house_lj = 5 * size;
+            setValue("house_lj", house_lj);
+
+            var house_zx = 2000 * 1;
+            setValue("house_zx", house_zx);
+
+            var house_wx = 75 * size;
+            setValue("house_wx", house_wx);
+
+            var house_qs = size < 90 ? (0.01 * total) : (0.015 * total);
+            setValue("house_qs", house_qs);
+
+            var house_dj = 80 * 1;
+            setValue("house_dj", house_dj);
+
+            var house_dy = 80 * 1;
+            setValue("house_dy", house_dy);
+
+            var house_fk = 0.03 * total;
+            setValue("house_fk", house_fk);
+
+            document.getElementById("house_all").innerHTML = (house_all - house_fk * 2) + "<br>" 
+                + (house_all - house_fk) + "<br>" + (house_all);
+        }
+    </script>
 </body>
 </html>
