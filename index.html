@@ -11,14 +11,14 @@
     </style>
 </head>
 <body>
-    平米数(平米): <input id="house_size"/>
+    平米数(平米): <input id="house_size" onkeyup="limitInput(this)"/>
     <br>
-    总房款(万元): <input id="house_total"/>
+    总房款(万元): <input id="house_total" onkeyup="limitInput(this)"/>
     <br>
     <button onclick="calcHouse()">计算</button>
     <br>
     <br>
-    <table border="1px">
+    <table border="1px" cellspacing="0">
         <tr>
             <td>名称</td>
             <td>时间</td>
@@ -96,10 +96,20 @@
         }
 
         function setValue(id, value) {
+            value = parseFloat2(value);
             document.getElementById(id).innerHTML = value;
             house_all += value;
         }
 
+        function parseFloat2(value){
+            value = parseFloat(value.toFixed(2));
+            return value;
+        }
+        
+        function limitInput(input) {
+            input.value = input.value.replace(/[^0-9.]/g,'');
+        }
+        
         function calcHouse(){
             house_all = 0;
             
@@ -130,11 +140,10 @@
             var house_dy = 80 * 1;
             setValue("house_dy", house_dy);
 
+            setValue("house_all", house_all);
+            
             var house_fk = 0.03 * total;
             setValue("house_fk", house_fk);
-
-            document.getElementById("house_all").innerHTML = (house_all - house_fk * 2) + "<br>" 
-                + (house_all - house_fk) + "<br>" + (house_all);
         }
     </script>
 </body>
