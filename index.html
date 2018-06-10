@@ -12,9 +12,7 @@
 </head>
 <body>
     平米数(平米): <input id="house_size" onkeyup="limitInput(this)"/>
-    <br>
-    总房款(万元): <input id="house_total" onkeyup="limitInput(this)"/>
-    <br>
+    <p>总房款(万元): <input id="house_total" onkeyup="limitInput(this)"/></p>
     <button onclick="calcHouse()">计算</button>
     <br>
     <br>
@@ -74,9 +72,15 @@
             <td id="house_dy"></td>
         </tr>
         <tr>
-            <td>房款</td>
+            <td>房屋面积误差</td>
             <td>一次性</td>
-            <td>3% x 总房款</td>
+            <td>
+            	<select id="house_wc_symbol" style="width:50px">
+            		<option value="1">多</option>
+            		<option value="-1">少</option>
+            	</select>
+            	<input value="0" id="house_wc_size" style="width:20px">%
+            </td>
             <td id="house_fk"></td>
         </tr>
         <tr>
@@ -139,11 +143,11 @@
 
             var house_dy = 80 * 1;
             setValue("house_dy", house_dy);
-
-            setValue("house_all", house_all);
             
-            var house_fk = 0.03 * total;
+            var house_fk = getValue("house_wc_size") * getValue("house_wc_symbol") * total / 100;
             setValue("house_fk", house_fk);
+            
+            setValue("house_all", house_all);
         }
     </script>
 </body>
